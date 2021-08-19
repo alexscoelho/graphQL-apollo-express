@@ -26,6 +26,28 @@ const resolvers = {
       const data = await database.ref("country/").push(newCountry);
       return newCountry;
     },
+    updateCountry: async (parent, args) => {
+      const { id, name, totalPopulation, area, year } = args;
+      const modifiedData = {
+        name,
+        area,
+        totalPopulation,
+        year,
+      };
+      database.ref("country/" + id).set(modifiedData, (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          return "ok";
+        }
+      });
+      return modifiedData;
+    },
+    deleteCountry: async (parent, args) => {
+      const { id } = args;
+      database.ref("country/" + id).remove();
+      return true;
+    },
   },
 };
 
