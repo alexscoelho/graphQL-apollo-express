@@ -4,8 +4,6 @@ const fetch = require("node-fetch");
 
 const baseURL = "https://graphql-test-7f1f8-default-rtdb.firebaseio.com";
 
-console.log(database);
-
 const resolvers = {
   Query: {
     getAllCountries: async () => {
